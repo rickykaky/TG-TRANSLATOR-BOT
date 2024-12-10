@@ -32,6 +32,8 @@ class TranslationBot:
 
         # INFOS DU BOT
         self.telegram_api_token = os.getenv('TELEGRAM_API_TOKEN')
+        if not self.telegram_api_token:
+            raise ValueError("Le token API Telegram n'est pas défini. Veuillez vérifier votre fichier .env")
         self.bot = telebot.TeleBot(self.telegram_api_token)
         self.bot_info = self.bot.get_me()
         self.bot_name, self.bot_id, self.bot_username = (
